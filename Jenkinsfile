@@ -27,7 +27,7 @@ pipeline{
         stage ('Publish to Nexus'){
             steps{
                  echo ' publishing......'
-         nexusArtifactUploader artifacts: [[artifactId: 'SMLab', classifier: '', file: 'target/SMLab-0.0.1.war', type: 'war']], credentialsId: 'a3494b15-1c5a-4c5b-8636-8ec6b935ec51', groupId: 'com.smdevopslab', nexusUrl: '172.20.10.91:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'SM-Devops-RELEASE', version: '0.0.1'
+         nexusArtifactUploader artifacts: [[artifactId: 'SMLab', classifier: '', file: 'target/SMLab-0.0.1-SNAPSHOT.war', type: 'war']], credentialsId: 'a3494b15-1c5a-4c5b-8636-8ec6b935ec51', groupId: 'com.smdevopslab', nexusUrl: '172.20.10.91:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'SM-Devops-SNAPSHOT', version: '0.0.1-SNAPSHOT'
                 echo ' published......'
             }
         }
