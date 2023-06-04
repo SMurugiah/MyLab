@@ -22,6 +22,13 @@ pipeline{
 
             }
         }
+
+        // Stage 3: Publish Snapshot artifacts to Nexus
+        stage ('Publish to Nexus'){
+            steps{
+                nexusArtifactUploader artifacts: [[artifactId: 'SMLab', classifier: '', file: 'target/SMLab-0.0.7-SNAPSHOT.war', type: 'war']], credentialsId: 'a3494b15-1c5a-4c5b-8636-8ec6b935ec51', groupId: 'com.smdevopslab', nexusUrl: '172.20.10.91:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'SM-Devops-SNAPSHOT', version: '0.0.7'
+            }
+        }
 		
 		// Stage3 : Deploying
         stage ('Deploy'){
