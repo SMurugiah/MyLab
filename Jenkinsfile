@@ -5,6 +5,14 @@ pipeline{
         maven 'maven'
     }
 
+    environment{
+        ArtifactId = readMavenPom().getArtifactId()
+        Version = readMavenPom().getVersion()
+        Name = readMavenPom().getName()
+        GroupId = readMavenPom().getGroupId()
+    }
+
+
     stages {
         // Specify various stage with in stages
 
@@ -23,15 +31,35 @@ pipeline{
             }
         }
 
-        // Stage 3: Publish Snapshot artifacts to Nexus
+/*         // Stage 3: Publish Snapshot & Release artifacts to Nexus -- Working
+                
         stage ('Publish to Nexus'){
             steps{
                  echo ' publishing......'
          nexusArtifactUploader artifacts: [[artifactId: 'SMLab', classifier: '', file: 'target/SMLab-0.0.1-SNAPSHOT.war', type: 'war']], credentialsId: 'a3494b15-1c5a-4c5b-8636-8ec6b935ec51', groupId: 'com.smdevopslab', nexusUrl: '172.20.10.91:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'SM-Devops-SNAPSHOT', version: '0.0.1-SNAPSHOT'
                 echo ' published......'
             }
-        }
+        } */
 		
+        //  Stage 3: Publish Snapshot & Release artifacts to Nexus -- Using Scripts
+        stage ('Publish to Nexus using Scripts'){
+            steps{
+                 echo ' publishing......'
+         nexusArtifactUploader artifacts: [[artifactId: 'SMLab', classifier: '', file: 'target/SMLab-0.0.1-SNAPSHOT.war', type: 'war']], credentialsId: 'a3494b15-1c5a-4c5b-8636-8ec6b935ec51', groupId: 'com.smdevopslab', nexusUrl: '172.20.10.91:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'SM-Devops-SNAPSHOT', version: '0.0.1-SNAPSHOT'
+                echo ' published......'
+            }
+
+             //  Stage 4: Print Variables
+        stage ('Print Environment Variables'){
+            steps{
+                 echo " Artifact ID is '${ArtifactId}'"
+                 echo " Version is '${Version}'"
+                 echo " Group ID is '${GroupId}'"
+                 echo " Name is '${Name}'"
+
+            }  
+
+
 		// Stage3 : Deploying
         stage ('Deploy'){
             steps {
