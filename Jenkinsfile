@@ -51,7 +51,7 @@ pipeline{
                 nexusArtifactUploader artifacts: 
                 [[artifactId: "${ArtifactId}",
                  classifier: '', 
-                 file: 'target/SMLab-0.0.1-SNAPSHOT.war', 
+                 file: "target/${ArtifactId}-${Version}.war", 
                  type: 'war']], 
                  credentialsId: 'a3494b15-1c5a-4c5b-8636-8ec6b935ec51', 
                  groupId: "${GroupId}", 
