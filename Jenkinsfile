@@ -43,10 +43,23 @@ pipeline{
 		
         //  Stage 3: Publish Snapshot & Release artifacts to Nexus -- Using Scripts
         stage ('Publish to Nexus using Scripts'){
-            steps{
-                 echo ' publishing......'
-         nexusArtifactUploader artifacts: [[artifactId: 'SMLab', classifier: '', file: 'target/SMLab-0.0.1-SNAPSHOT.war', type: 'war']], credentialsId: 'a3494b15-1c5a-4c5b-8636-8ec6b935ec51', groupId: 'com.smdevopslab', nexusUrl: '172.20.10.91:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'SM-Devops-SNAPSHOT', version: '0.0.1-SNAPSHOT'
-                echo ' published......'
+             steps {
+                script {
+
+              //  def NexusRepo = Version.endsWith("SNAPSHOT") ? "SM-Devops-SNAPSHOT" : "SM-Devops-RELEASE"
+                nexusArtifactUploader artifacts: 
+                [[artifactId: "${ArtifactId}",
+                 classifier: '', 
+                 file: 'target/SMLab-0.0.1-SNAPSHOT.war', 
+                 type: 'war']], 
+                 credentialsId: 'a3494b15-1c5a-4c5b-8636-8ec6b935ec51', 
+                 groupId: "${GroupId}", 
+                 nexusUrl: '172.20.10.91:8081', 
+                 nexusVersion: 'nexus3', 
+                 protocol: 'http', 
+                 repository: 'SM-Devops-SNAPSHOT', 
+                 version: "${Version}"
+             }
             }
         }
 
