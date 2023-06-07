@@ -97,17 +97,8 @@ pipeline{
                     transfers: [
                         sshTransfer(
                         cleanRemote: false, 
-                        excludes: '', 
                         execCommand: 'ansible-playbook /opt/playbook/downloadanddeploy.yaml -i /opt/playbook/hosts', 
-                        execTimeout: 120000, 
-                        flatten: false, 
-                        makeEmptyDirs: false, 
-                        noDefaultExcludes: false, 
-                        patternSeparator: '[, ]+', 
-                        remoteDirectory: '', 
-                        remoteDirectorySDF: false, 
-                        removePrefix: '', 
-                        sourceFiles: '')
+                        execTimeout: 120000)
                         ], 
                     usePromotionTimestamp: false, 
                     useWorkspaceInPromotion: false, 
