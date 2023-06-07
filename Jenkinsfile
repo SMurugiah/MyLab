@@ -93,7 +93,7 @@ pipeline{
 
                 sshPublisher(publishers:
                 [sshPublisherDesc(
-                    configName: 'Ansible Controller',
+                    configName: 'Ansible_Controller',
                     transfers: [
                         sshTransfer(
                         cleanRemote: false, 
