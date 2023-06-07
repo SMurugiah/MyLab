@@ -36,7 +36,18 @@ pipeline{
         stage ('Publish to Nexus'){
             steps{
                  echo ' publishing......'
-         nexusArtifactUploader artifacts: [[artifactId: 'SMLab', classifier: '', file: 'target/SMLab-0.0.1-SNAPSHOT.war', type: 'war']], credentialsId: 'a3494b15-1c5a-4c5b-8636-8ec6b935ec51', groupId: 'com.smdevopslab', nexusUrl: '172.20.10.91:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'SM-Devops-SNAPSHOT', version: '0.0.1-SNAPSHOT'
+         nexusArtifactUploader artifacts: 
+         [[artifactId: 'SMLab', 
+         classifier: '', 
+         file: 'target/SMLab-0.0.1-SNAPSHOT.war', 
+         type: 'war']], 
+         credentialsId: 'a3494b15-1c5a-4c5b-8636-8ec6b935ec51', 
+         groupId: 'com.smdevopslab', 
+         nexusUrl: '172.20.10.91:8081', 
+         nexusVersion: 'nexus3', 
+         protocol: 'http', 
+         repository: 'SM-Devops-SNAPSHOT', 
+         version: '0.0.1-SNAPSHOT'
                 echo ' published......'
             }
         } */
@@ -75,10 +86,35 @@ pipeline{
             }  
         }
 
-		// Stage3 : Deploying
+		// Stage5 : Deploying
         stage ('Deploy'){
             steps {
                 echo ' deploying......'
+
+                sshPublisher(publishers:
+                [sshPublisherDesc(
+                    configName: 'Ansible Controller',
+                    transfers: [
+                        sshTransfer(
+                        cleanRemote: false, 
+                        excludes: '', 
+                        execCommand: 'ansible-playbook /opt/playbook/downloadanddeploy.yaml -i /opt/playbook/hosts', 
+                        execTimeout: 120000, 
+                        flatten: false, 
+                        makeEmptyDirs: false, 
+                        noDefaultExcludes: false, 
+                        patternSeparator: '[, ]+', 
+                        remoteDirectory: '', 
+                        remoteDirectorySDF: false, 
+                        removePrefix: '', 
+                        sourceFiles: '')
+                        ], 
+                    usePromotionTimestamp: false, 
+                    useWorkspaceInPromotion: false, 
+                    verbose: false)
+
+                    ]
+                )
 
             }
         }
