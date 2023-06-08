@@ -108,6 +108,7 @@ pipeline{
 
                     ]
                 ) */
+                /*
                             // Full Pipeline script Method
         sshPublisher(publishers: 
         [sshPublisherDesc(
@@ -133,7 +134,7 @@ pipeline{
     )
             }
         }
-
+ */
         		// Stage6 : Deploying build artifact to Docker
         stage ('Deploy to Docker'){
             steps {
