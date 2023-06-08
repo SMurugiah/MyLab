@@ -53,7 +53,7 @@
     <div class="container">
         <h1>Hello</h1>
         <p>This is SM DevOps AWS Lab</p>
-        <p><a class="btn btn-primary btn-lg" role="button">Learn more SM &raquo;</a></p>
+        <p><a class="btn btn-primary btn-lg" role="button">Learn more DEMO SM &raquo;</a></p>
         <p><a class="btn btn-primary btn-lg" role="button">My World &raquo;</a></p>
         <p><a class="btn btn-primary btn-lg" role="button">BEST Of ALL &raquo;</a></p>
         <p><a class="btn btn-primary btn-lg" role="button">Success!! more &raquo;</a></p>

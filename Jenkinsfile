@@ -91,11 +91,11 @@ pipeline{
 		// Stage5 : Deploying build artifact to TOMCAT
         stage ('Deploy to Tomcat'){
             steps {
-                echo ' deploying......'
+                echo ' deploying.....Tomcat .'
                                             // Simple Method
                 /* sshPublisher(publishers:
                 [sshPublisherDesc(
-                    configName: 'Ansible_Controller',
+                    configName: 'Ansible Controller',
                     transfers: [
                         sshTransfer(
                         cleanRemote: false, 
@@ -108,7 +108,7 @@ pipeline{
 
                     ]
                 ) */
-                /*
+                
                             // Full Pipeline script Method
         sshPublisher(publishers: 
         [sshPublisherDesc(
@@ -134,15 +134,15 @@ pipeline{
     )
             }
         }
- */
+
         		// Stage6 : Deploying build artifact to Docker
         stage ('Deploy to Docker'){
             steps {
-                echo ' deploying......'
-                                            // Simple Method
+                echo ' deploying......Docker'
+                                                  // Simple Method
                 sshPublisher(publishers:
                 [sshPublisherDesc(
-                    configName: 'Ansible_Controller',
+                    configName: 'Ansible Controller',
                     transfers: [
                         sshTransfer(
                         cleanRemote: false, 
