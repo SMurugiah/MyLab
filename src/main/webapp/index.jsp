@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Vinay's DevOps Lab</title>
+    <title>SM's DevOps Lab</title>
 
 
     <!-- Custom styles for this template -->
@@ -54,6 +54,7 @@
         <h1>Hello</h1>
         <p>This is SM DevOps AWS Lab</p>
         <p><a class="btn btn-primary btn-lg" role="button">Learn more &raquo;</a></p>
+        <p><a class="btn btn-primary btn-lg" role="button">My World &raquo;</a></p>
         <p><a class="btn btn-primary btn-lg" role="button">Success!! more &raquo;</a></p>
     </div>
 </div>
