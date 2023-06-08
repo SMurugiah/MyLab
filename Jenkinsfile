@@ -92,7 +92,7 @@ pipeline{
         stage ('Deploy'){
             steps {
                 echo ' deploying......'
-
+                                            // Simple Method
                 /* sshPublisher(publishers:
                 [sshPublisherDesc(
                     configName: 'Ansible_Controller',
@@ -108,7 +108,7 @@ pipeline{
 
                     ]
                 ) */
-
+                            // Full Pipeline script Method
         sshPublisher(publishers: 
         [sshPublisherDesc(
             configName: 'Ansible Controller', 
